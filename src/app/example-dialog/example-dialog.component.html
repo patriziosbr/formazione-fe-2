@@ -1,0 +1,19 @@
+<h2>Dialog Demo</h2>
+<p>
+  <button mat-raised-button (click)="openUserDialog()">Pick user</button>
+  <br /> {{user.name}}
+  <br /> {{user.city}}
+</p>
+<p>
+  <button mat-raised-button (click)="openInfoDialog()">Info</button>
+</p>
+
+<ng-template let-data #myInfoDialog>
+  <h2 mat-dialog-title>Information</h2>
+  <div mat-dialog-content>
+    {{data}}
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+  </div>
+</ng-template> 
