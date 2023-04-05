@@ -19,26 +19,31 @@ export class AppComponent implements OnInit {
   thisYear = new Date().getFullYear()
   personDate = new Date(this.persona.data_nascita);
   personYear = this.personDate.getFullYear()
-
+  todayMoment : moment.Moment = moment(this.dateLocale);
+  personDateMoment : moment.Moment = moment(this.persona.data_nascita);
   constructor(){}
   calcolapersona(objPersona:object) {
-    let livedYears = this.thisYear - this.personYear; 
-    console.log(livedYears, "anni"); //ok 30 anni!
-    console.log(this.dateLocale);
-
-    let todayMoment : moment.Moment = moment(this.dateLocale); //data successiva alla nascita (oggi)
-    let personDateMoment : moment.Moment = moment(this.persona.data_nascita); //data nascita
-    
     // ESEMPIO SEMPLICE
     // let todayMoment : moment.Moment = moment("06-09-1993"); //data successiva alla nascita (oggi)
     // let personDateMoment : moment.Moment = moment("06-08-1993"); //data nascita
     // ESEMPIO SEMPLICE
 
-    let livedDays = todayMoment.diff(personDateMoment, 'days');
+    let livedYears = this.thisYear - this.personYear;
+    let livedDays = this.todayMoment.diff(this.personDateMoment, 'days');
     let livedHours = livedDays*24;
     let minutesLived = livedHours*60;
-    console.log(minutesLived, "minutes");
-    console.log(livedHours, "hours");
+
+    let printObj = {
+      livedYears: livedYears,
+      minutesLived : minutesLived,
+      livedHours: livedHours
+    }
+    let printArr = [livedYears, minutesLived, livedHours];
+    let printString = `questa persona ha vissuto ${livedYears} anni che corrispondo a ${minutesLived} minuti che corrispondo a ${livedHours} ore`;
+
+    console.log(printObj, printArr, printString);
+    
+
         
   }
   ngOnInit(): void {
