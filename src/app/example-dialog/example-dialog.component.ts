@@ -1,7 +1,6 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UserDialogComponent } from '../user-dialog/user-dialog.component';
-import { User } from '../interfaces/user';
 
 @Component({
   selector: 'example-dialog',
@@ -9,7 +8,6 @@ import { User } from '../interfaces/user';
   styleUrls: ['./example-dialog.component.scss']
 })
 export class ExampleDialogComponent {
-  user = { name: '', city: '' };
   dialogRef: any;
 
   constructor(public dialog: MatDialog) { }
@@ -17,12 +15,7 @@ export class ExampleDialogComponent {
   // Opening Dialog created by Component
   openUserDialog() {
     this.dialogRef = this.dialog.open(UserDialogComponent, 
-      { data: this.user, autoFocus: true });
-
-    this.dialogRef.afterClosed().subscribe((result: User) => {
-      console.log('The User dialog was closed.');
-      console.log(result?.name + ' - ' + result?.city);
-    });
+      { autoFocus: true });
   }
   
   // Opening Dialog created by ng-template
